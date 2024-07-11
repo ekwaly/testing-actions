@@ -4,7 +4,7 @@ name: Deploy Sphinx documentation to Pages
 on:
   # Runs on pushes targeting the default branch
   push:
-    branches: [$default-branch]
+    branches: main
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -28,13 +28,21 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
-    container: ghcr.io/sphinx-doc/sphinx
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          check-latest: true
+          cache: 'pip'
+          cache-dependency-path: './docs/requirements.txt'
+      - name: Install dependencies
+        run: |
+          pip install -r ./docs/requirements.txt
       - name: Build documentation
         run: |
-          pip install -r requirements.txt
           sphinx-build -M html ./docs/source _build/
       - name: Setup Pages
         uses: actions/configure-pages@v5
