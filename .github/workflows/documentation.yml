@@ -1,15 +1,12 @@
-name: Error
-run-name: Error is testing out GitHub Actions 🚀
-on: 
-  workflow_dispatch:
-    inputs:
-      url_data:
-        description: 'URL from where get map data'
-        required: true
-      method_name:
-        description: 'Name of the method to apply'
+name: Repository Dispatch
+on:
+  repository_dispatch:
+    types: [my-event]
 jobs:
-  Explore-GitHub-Actions:
+  myEvent:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "BIIIIIP Wrong Action..."
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.client_payload.ref }}
+      - run: echo ${{ github.event.client_payload.sha }}
