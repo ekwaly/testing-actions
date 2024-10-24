@@ -1,12 +1,16 @@
 name: Repository Dispatch
-on:
-  repository_dispatch:
-    types: [my-event]
+on: pull_request
+
+permissions:
+  contents: write
+
 jobs:
   myEvent:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
         with:
-          ref: ${{ github.event.client_payload.ref }}
-      - run: echo ${{ github.event.client_payload.sha }}
+          repository: ekwaly/testing-actions
+          event-type: my-event
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
