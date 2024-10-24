@@ -1,5 +1,9 @@
 name: Repository Dispatch
 on: pull_request
+
+permissions:
+  contents: write
+
 jobs:
   myEvent:
     runs-on: ubuntu-latest
