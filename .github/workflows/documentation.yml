@@ -7,7 +7,6 @@ jobs:
       - name: Repository Dispatch
         uses: peter-evans/repository-dispatch@v3
         with:
-          token: ${{ secrets.PAT }}
-          repository: username/my-repo
+          repository: ekwaly/testing-actions
           event-type: my-event
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
