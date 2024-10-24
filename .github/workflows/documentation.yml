@@ -1,8 +1,13 @@
 name: Error
 run-name: Error is testing out GitHub Actions 🚀
-on:
-  pull_request:
-    branches: main
+on: 
+  workflow_dispatch:
+    inputs:
+      url_data:
+        description: 'URL from where get map data'
+        required: true
+      method_name:
+        description: 'Name of the method to apply'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
