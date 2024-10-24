@@ -1,10 +1,15 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
-on:
-  pull_request:
-    branches: main
+name: Error
+run-name: Error is testing out GitHub Actions 🚀
+on: 
+  workflow_dispatch:
+    inputs:
+      url_data:
+        description: 'URL from where get map data'
+        required: true
+      method_name:
+        description: 'Name of the method to apply'
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "BIIIIIP Wrong Action..."
