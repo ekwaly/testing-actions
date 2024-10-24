@@ -1,4 +1,4 @@
-name: GitHub Actions Demo
+name: Error
 run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on:
   pull_request:
@@ -7,4 +7,4 @@ jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "BIIIIIP Wrong Action..."
